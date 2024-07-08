@@ -1,0 +1,59 @@
+## Output in html format
+report_html = json2html.convert(json=result)
+
+css_style = """
+<style>
+    table {
+        max-width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+    }
+    table, th, td {
+        border: 1px solid #dddddd;
+    }
+    th, td {
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .compliant-YES {
+        background-color: #d4edda; /* Light green */
+    }
+    .compliant-NO {
+        background-color: #f8d7da; /* Light red */
+    }
+</style>
+"""
+
+# Enhance the HTML with compliance highlighting
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(report_html, 'html.parser')
+
+# Apply compliance highlighting
+for td in soup.find_all('td'):
+    if td.get_text() == "YES":
+        td['class'] = 'compliant-YES'
+    elif td.get_text() == "NO":
+        td['class'] = 'compliant-NO'
+
+
+html_file = f"""
+<html>
+<head>
+    <title>Compliance Report</title>
+    {css_style}
+</head>
+<body>
+    <h1>Compliance Report</h1>
+    {str(soup)}
+</body>
+</html>
+"""
+
+with open('report.html', 'w') as htmlfileObj:
+    htmlfileObj.write(html_file)
+
