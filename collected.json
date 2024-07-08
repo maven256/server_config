@@ -1,0 +1,28 @@
+{
+"Target_Host": "abc.xyz.com",
+"Report_DateTime": "2024-03-26T12:03:44Z",
+
+    "SELinux_status": "enabled",
+    "net_ipv4_forwarding": 1,
+
+    "PasswordPolicy_config":
+    {
+      "PASS_MIN_LEN": 8,
+      "PASS_MAX_DAYS": 120,
+      "PASS_MIN_DAYS": 10,
+      "difok": 3
+    },
+    "SSHD_config":
+    {
+      "hostbasedauthentication": "yes",
+      "permitemptypasswords": "no",
+      "permitrootlogin": "yes",
+      "ports": {"port1": "22", "port2": "23", "port3": "24"}
+    },
+    "UserPolicy_config":
+    {
+      "UID_unique": "True",
+      "NoSHELL_Accounts": "False",
+      "Unsuccessful_loginretries": 5
+    }
+}
