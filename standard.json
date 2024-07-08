@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "meta": "PCI standards defined for Linux servers",
+
+  "SELinux_status": "enabled",
+  
+  "net_ipv4_forwarding": 0,
+
+  "PasswordPolicy_config":
+  {
+    "PASS_MIN_LEN": 8,
+    "PASS_MAX_DAYS": 90,
+    "PASS_MIN_DAYS": 7,
+    "difok": 3
+  },
+
+  "SSHD_config":
+  {
+    "hostbasedauthentication": "no",
+    "permitemptypasswords": "no",
+    "permitrootlogin": "no",
+    "ports": {"port1": "22", "port2": "23", "port3": "24"}
+  },
+
+  "UserPolicy_config":
+  {
+    "UID_unique": "True",
+    "NoSHELL_Accounts": "False",
+    "Unsuccessful_loginretries": 3
+  }
+
+}
